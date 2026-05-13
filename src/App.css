@@ -34,3 +34,28 @@ ol, ul {
 /*////////////////////////
     2. Typografie
 ////////////////////////*/
+img {
+    width: 100vw;
+}
+
+/*////////////////////////
+    3. Areas
+////////////////////////*/
+.europe {
+    color: var(--europe);
+}
+.azie {
+    color: var(--azie);
+}
+.africa {
+    color: var(--africa);
+}
+.australia {
+    color: var(--autralia);
+}
+.samerica {
+    color: var(--samerica);
+}
+.namerica {
+    color: var(--namerica);
+}
