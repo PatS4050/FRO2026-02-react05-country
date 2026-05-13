@@ -82,7 +82,7 @@ const getCountry = () => {
                                     <img className= "flag" src={countryFlag} alt="flag of ({countryName})"/>
                                 </span>
                                 <span className={countryRegion}>  {countryName}</span>
-                                <p>{countryPop}</p>
+                                <p>Has a population of {countryPop} people</p>
                             </article>
                         </li>
 
