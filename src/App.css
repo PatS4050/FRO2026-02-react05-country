@@ -1,4 +1,36 @@
-:root {
-    color: blue;
+/*////////////////////////////////////////////////////////////////////////
+Table of Contents:
+    1. Global Styles
+    2. Typografie
+    3. Areas
+    4. Media Queries
+////////////////////////////////////////////////////////////////////////*/
 
+/*////////////////////////
+    1. Global Styles
+////////////////////////*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+ol, ul {
+    list-style: none
+}
+:root {
+    --europe: #F9D458;
+    --africa: #5B76BC;
+    --azie: #C2575e;
+    --samerica: #80C18C;
+    --namerica: #598051;
+    --autralia: #9B5AB5;
+    --yellow: #F9D458;
+    --blue: #5B76BC;
+    --red: #C2575e;
+    --lightGreen: #80C18C;
+    --green: #598051;
+    --purple: #9B5AB5;
+}
+/*////////////////////////
+    2. Typografie
+////////////////////////*/
