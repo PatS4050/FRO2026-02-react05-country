@@ -41,19 +41,34 @@ img {
 /*////////////////////////
     3. Areas
 ////////////////////////*/
-.europe {
+main {
+    border: 1px solid var(--blue);
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+}
+div {
+    border: 1px dashed var(--purple);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: start;
+}
+.Europe {
     color: var(--europe);
 }
-.azie {
+.Asia {
     color: var(--azie);
 }
-.africa {
+.Africa {
     color: var(--africa);
 }
-.australia {
+.Oceania {
     color: var(--autralia);
 }
-.samerica {
+.Americas {
     color: var(--samerica);
 }
 .namerica {
