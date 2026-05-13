@@ -43,8 +43,7 @@ function App() {
     async function getCountryFlag() {
         try {
             const responseCountryFlag = await axios.get(worldLink);
-            setCountryPop(responseCountryFlag.data[101].flags.png);
-            // console.log(responseCountryPop.data[0].population);
+            setCountryFlag(responseCountryFlag.data[101].flags.png);
         } catch (e) {
             console.error(e);
         }
@@ -54,33 +53,35 @@ function App() {
         try {
             const responseCountryRegion = await axios.get(worldLink);
             setCountryRegion(responseCountryRegion.data[101].region);
-            // console.log(responseCountryPop.data[0].population);
         } catch (e) {
             console.error(e);
         }
     }
 
-
+const getCountry = () => {
+        getWorld();
+        getCountryName();
+        getCountryFlag();
+        getCountryRegion();
+        getCountryPop();
+}
     return (
         <>
             <main>
                 <img src={worldMap} alt="coloured map of the world"/>
 
                 <h1>World Regions</h1>
-                <button onClick={getWorld}>breng de wereld</button>
-                <button onClick={getCountryName}>breng het eerste land</button>
-                <button onClick={getCountryFlag}>breng de vlag</button>
-                <button onClick={getCountryPop}>breng de populatie</button>
-                <button onClick={getCountryRegion}>breng het continent</button>
+                <button onClick={getCountry}>breng het land</button>
+
 
                 <div>
                     <ul>
                         <li>
                             <article>
-                                <p className={countryRegion}>{countryName}</p>
                                 <span>
-                                    <img src={countryFlag} alt="flag of ({countryName})"/>
+                                    <img className= "flag" src={countryFlag} alt="flag of ({countryName})"/>
                                 </span>
+                                <span className={countryRegion}>  {countryName}</span>
                                 <p>{countryPop}</p>
                             </article>
                         </li>

@@ -74,3 +74,6 @@ div {
 .namerica {
     color: var(--namerica);
 }
+.flag {
+    width:36px
+}
