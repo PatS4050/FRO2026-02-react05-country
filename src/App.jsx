@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import worldMap from "./assets/world_map.png"
 import region from "./helper/region.js";
+// import worldLink from 'https://restcountries.com/v3.1/all?fields=name,flags,population,region';
 
 
 function App() {
@@ -16,15 +17,17 @@ function App() {
     async function getWorld() {
         try {
             const responseWorld = await axios.get(worldLink);
-            setCountryPop(responseWorld.data[111].population);
-            setCountryFlag(responseWorld.data[111].flags.png);
-            setCountryName(responseWorld.data[111].name.official);
-            setCountryRegion(responseWorld.data[111].region);
+            setCountryPop(responseWorld.data.population);
+            setCountryFlag(responseWorld.data.flags.png);
+            setCountryName(responseWorld.data.name.official);
+            setCountryRegion(responseWorld.data.region);
             console.log(responseWorld.data);
         } catch (e) {
             console.error(e);
         }
     }
+
+// Functies apart nog even laten staan ter lering voor later //
 
     // async function getCountryName() {
     //     try {
@@ -62,7 +65,8 @@ function App() {
     //     } catch (e) {
     //         console.error(e);
     //     }
-    // }
+
+    // ///////////////////////////////////////////////////////////////////
 
     const getCountry = () => {
         getWorld();
@@ -81,17 +85,19 @@ function App() {
             <main>
 
                 {/*Door het in een functie te plaatsen met && laat ze de list zien als het een truthy is als idg een naam van een land bekent is. Door het met een truthy falsy te doen met een ? en : wissel je tussen het article en de button*/}
-                { countryName ?
+                { countryPop ?
                 <ul>
-                        <li>
+                    {getWorld.map((countries) => {
+                        return <li>
                             <article>
                                 <span>
-                                    <img className="flag" src={countryFlag} alt="flag of ({countryName})"/>
+                                    <img className="flag" src={countryFlag(countries)} alt="flag of ({countryName})"/>
                                 </span>
-                                <span className={countryRegion}>  {countryName}</span>
-                                <p>Has a population of {countryPop} people</p>
+                                <span className={countryRegion(countries)}>  {countryName(countries)}</span>
+                                <p>Has a population of {countryPop(countries)} people</p>
                             </article>
                         </li>
+                    })}
                     </ul> : <button onClick={getCountry}>breng de landen</button>
                 }
             </main>
