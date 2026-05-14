@@ -11,10 +11,13 @@ function App() {
     const [countryPop, setCountryPop] = useState("");
     const [countryFlag, setCountryFlag] = useState("");
     const [countryRegion, setCountryRegion] = useState("");
-    const [error, setError] = useState("");
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false)
     const worldLink = 'https://restcountries.com/v3.1/all?fields=name,flags,population,region';
 
     async function getWorld() {
+        toggleError(false)
+        toggleLoading(true)
         try {
             const responseWorld = await axios.get(worldLink);
             setCountryPop(responseWorld.data.population);
@@ -23,9 +26,32 @@ function App() {
             setCountryRegion(responseWorld.data.region);
             console.log(responseWorld.data);
         } catch (e) {
+            toggleError(true)
             console.error(e);
+        } finally {
+            toggleLoading(false)
         }
     }
+//     DEZE DOET HET WEL   //
+
+    // async function getWorld() {
+    //     toggleError(false)
+    //     toggleLoading(true)
+    //     try {
+    //         const responseWorld = await axios.get(worldLink);
+    //         setCountryPop(responseWorld.data[101].population);
+    //         setCountryFlag(responseWorld.data[101].flags.png);
+    //         setCountryName(responseWorld.data[101].name.official);
+    //         setCountryRegion(responseWorld.data[101].region);
+    //         console.log(responseWorld.data);
+    //     } catch (e) {
+    //         toggleError(true)
+    //         console.error(e);
+    //     } finally {
+    //         toggleLoading(false)
+    //     }
+    // }
+
 
 // Functies apart nog even laten staan ter lering voor later //
 
@@ -91,15 +117,32 @@ function App() {
                         return <li>
                             <article>
                                 <span>
-                                    <img className="flag" src={countryFlag(countries)} alt="flag of ({countryName})"/>
+                                    <img className="flag" src={countryFlag(countries)} alt="flag of ({countryName(countries)})"/>
                                 </span>
                                 <span className={countryRegion(countries)}>  {countryName(countries)}</span>
                                 <p>Has a population of {countryPop(countries)} people</p>
                             </article>
                         </li>
                     })}
-                    </ul> : <button onClick={getCountry}>breng de landen</button>
+                    </ul> : <button onClick={getCountry} disabled={loading}>breng de landen</button>
                 }
+                {error && <h2> Er is iets misgegaan</h2>}
+
+                {/*DEZE DOET HET WEL */}
+                {/*{ countryPop ?*/}
+                {/*    <ul>*/}
+                {/*        <li>*/}
+                {/*            <article>*/}
+                {/*                <span>*/}
+                {/*                    <img className="flag" src={countryFlag} alt="flag of ({countryName})"/>*/}
+                {/*                </span>*/}
+                {/*                <span className={countryRegion}>  {countryName}</span>*/}
+                {/*                <p>Has a population of {countryPop} people</p>*/}
+                {/*            </article>*/}
+                {/*        </li>*/}
+                {/*    </ul> : <button onClick={getCountry} disabled={loading}>breng de landen</button>*/}
+                {/*}*/}
+                {/*{error && <h2> Er is iets misgegaan</h2>}*/}
             </main>
         </>
     )
