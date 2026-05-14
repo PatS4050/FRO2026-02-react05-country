@@ -79,8 +79,10 @@ function App() {
                 <h1>World Regions</h1>
             </header>
             <main>
-                <button onClick={getCountry}>breng het land</button>
-                    <ul>
+
+                {/*Door het in een functie te plaatsen met && laat ze de list zien als het een truthy is als idg een naam van een land bekent is. Door het met een truthy falsy te doen met een ? en : wissel je tussen het article en de button*/}
+                { countryName ?
+                <ul>
                         <li>
                             <article>
                                 <span>
@@ -90,7 +92,8 @@ function App() {
                                 <p>Has a population of {countryPop} people</p>
                             </article>
                         </li>
-                    </ul>
+                    </ul> : <button onClick={getCountry}>breng de landen</button>
+                }
             </main>
         </>
     )
