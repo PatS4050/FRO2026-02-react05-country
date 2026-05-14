@@ -37,24 +37,61 @@ ol, ul {
 img {
     width: 100vw;
 }
-
+p {
+    font-size: 12px;
+}
 /*////////////////////////
     3. Areas
 ////////////////////////*/
-main {
-    border: 1px solid var(--blue);
-    margin: 12px;
+header{
+    /*border: red dotted 2px;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     justify-items: center;
 }
+h1 {
+    display: flex;
+    justify-content: center;
+}
+main {
+    /*border: 3px solid var(--blue);*/
+    background-color: ghostwhite;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    width:100%;
+
+}
 div {
-    border: 1px dashed var(--purple);
+    /*border:dashed blue 4px;*/
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+}
+ul {
+    /*border: 4px dashed var(--purple);*/
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    justify-items: start;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    overflow: auto;
+    gap:4px;
+}
+li {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 240px;
+    box-shadow: grey;
+    position: relative;
+    gap: 6px;
+}
+article{
+    /*border: 2px green solid;*/
 }
 .Europe {
     color: var(--europe);

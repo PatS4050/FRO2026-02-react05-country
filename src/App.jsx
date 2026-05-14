@@ -16,78 +16,81 @@ function App() {
     async function getWorld() {
         try {
             const responseWorld = await axios.get(worldLink);
+            setCountryPop(responseWorld.data[111].population);
+            setCountryFlag(responseWorld.data[111].flags.png);
+            setCountryName(responseWorld.data[111].name.official);
+            setCountryRegion(responseWorld.data[111].region);
             console.log(responseWorld.data);
         } catch (e) {
             console.error(e);
         }
     }
 
-    async function getCountryName() {
-        try {
-            const responseCountryName = await axios.get(worldLink);
-            setCountryName(responseCountryName.data[101].name.official);
-            // console.log(responseCountryName.data[0].name);
-        } catch (e) {
-            console.error(e);
-        }
-    }
-    async function getCountryPop() {
-        try {
-            const responseCountryPop = await axios.get(worldLink);
-            setCountryPop(responseCountryPop.data[101].population);
-            // console.log(responseCountryPop.data[0].population);
-        } catch (e) {
-            console.error(e);
-        }
-    }
-    async function getCountryFlag() {
-        try {
-            const responseCountryFlag = await axios.get(worldLink);
-            setCountryFlag(responseCountryFlag.data[101].flags.png);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+    // async function getCountryName() {
+    //     try {
+    //         const responseCountryName = await axios.get(worldLink);
+    //         setCountryName(responseCountryName.data[101].name.official);
+    //         // console.log(responseCountryName.data[0].name);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
 
-    async function getCountryRegion() {
-        try {
-            const responseCountryRegion = await axios.get(worldLink);
-            setCountryRegion(responseCountryRegion.data[101].region);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+    // async function getCountryPop() {
+    //     try {
+    //         const responseCountryPop = await axios.get(worldLink);
+    //         setCountryPop(responseCountryPop.data[101].population);
+    //         // console.log(responseCountryPop.data[0].population);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
 
-const getCountry = () => {
+    // async function getCountryFlag() {
+    //     try {
+    //         const responseCountryFlag = await axios.get(worldLink);
+    //         setCountryFlag(responseCountryFlag.data[101].flags.png);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
+
+    // async function getCountryRegion() {
+    //     try {
+    //         const responseCountryRegion = await axios.get(worldLink);
+    //         setCountryRegion(responseCountryRegion.data[101].region);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
+
+    const getCountry = () => {
         getWorld();
-        getCountryName();
-        getCountryFlag();
-        getCountryRegion();
-        getCountryPop();
-}
+        // getCountryName();
+        // getCountryFlag();
+        // getCountryRegion();
+        // region();
+        // getCountryPop();
+    }
     return (
         <>
-            <main>
+            <header>
                 <img src={worldMap} alt="coloured map of the world"/>
-
                 <h1>World Regions</h1>
+            </header>
+            <main>
                 <button onClick={getCountry}>breng het land</button>
-
-
-                <div>
                     <ul>
                         <li>
                             <article>
                                 <span>
-                                    <img className= "flag" src={countryFlag} alt="flag of ({countryName})"/>
+                                    <img className="flag" src={countryFlag} alt="flag of ({countryName})"/>
                                 </span>
                                 <span className={countryRegion}>  {countryName}</span>
                                 <p>Has a population of {countryPop} people</p>
                             </article>
                         </li>
-
                     </ul>
-                </div>
             </main>
         </>
     )
