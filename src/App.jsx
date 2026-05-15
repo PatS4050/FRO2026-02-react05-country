@@ -9,10 +9,12 @@ import region from "./helper/region.js";
 function App() {
     const [countryName, setCountryName] = useState("");
     const [countryPop, setCountryPop] = useState("");
-    const [countryFlag, setCountryFlag] = useState("");
-    const [countryRegion, setCountryRegion] = useState("");
+    // const [countryFlag, setCountryFlag] = useState("");
+    // const [countryRegion, setCountryRegion] = useState("");
+    const [country, setCountry] = useState("");
     const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false)
+    const [loading, toggleLoading] = useState(false);
+
     const worldLink = 'https://restcountries.com/v3.1/all?fields=name,flags,population,region';
 
     async function getWorld() {
@@ -20,10 +22,11 @@ function App() {
         toggleLoading(true)
         try {
             const responseWorld = await axios.get(worldLink);
+            setCountry(responseWorld);
             setCountryPop(responseWorld.data.population);
-            setCountryFlag(responseWorld.data.flags.png);
-            setCountryName(responseWorld.data.name.official);
-            setCountryRegion(responseWorld.data.region);
+            // setCountryFlag(responseWorld.data.flags.png);
+            // setCountryName(responseWorld.data.name.official);
+            // setCountryRegion(responseWorld.data.region);
             console.log(responseWorld.data);
         } catch (e) {
             toggleError(true)
@@ -39,10 +42,10 @@ function App() {
     //     toggleLoading(true)
     //     try {
     //         const responseWorld = await axios.get(worldLink);
-    //         setCountryPop(responseWorld.data[101].population);
-    //         setCountryFlag(responseWorld.data[101].flags.png);
-    //         setCountryName(responseWorld.data[101].name.official);
-    //         setCountryRegion(responseWorld.data[101].region);
+    //         setCountryPop(responseWorld.data[196].population);
+    //         setCountryFlag(responseWorld.data[196].flags.png);
+    //         setCountryName(responseWorld.data[196].name.official);
+    //         setCountryRegion(responseWorld.data[196].region);
     //         console.log(responseWorld.data);
     //     } catch (e) {
     //         toggleError(true)
@@ -113,14 +116,14 @@ function App() {
                 {/*Door het in een functie te plaatsen met && laat ze de list zien als het een truthy is als idg een naam van een land bekent is. Door het met een truthy falsy te doen met een ? en : wissel je tussen het article en de button*/}
                 { countryPop ?
                 <ul>
-                    {getWorld.map((countries) => {
+                    {country.map(() => {
                         return <li>
                             <article>
-                                <span>
-                                    <img className="flag" src={countryFlag(countries)} alt="flag of ({countryName(countries)})"/>
-                                </span>
-                                <span className={countryRegion(countries)}>  {countryName(countries)}</span>
-                                <p>Has a population of {countryPop(countries)} people</p>
+                                {/*<span>*/}
+                                {/*    <img className="flag" src={countryFlag} alt="flag of {countryName}"/>*/}
+                                {/*</span>*/}
+                                {/*<span className={countryRegion}>  {countryName}</span>*/}
+                                <p>Has a population of {countryPop} people</p>
                             </article>
                         </li>
                     })}
