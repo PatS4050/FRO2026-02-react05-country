@@ -23,11 +23,14 @@ function App() {
         try {
             const responseWorld = await axios.get(worldLink);
             setCountry(responseWorld);
-            setCountryPop(responseWorld.data.population);
+            return setCountry
+            // const setCountryPop = country.data;
+            // setCountryPop(responseWorld.data.population);
             // setCountryFlag(responseWorld.data.flags.png);
             // setCountryName(responseWorld.data.name.official);
             // setCountryRegion(responseWorld.data.region);
-            console.log(responseWorld.data);
+            // console.log(responseWorld.data);
+            console.log(setCountry)
         } catch (e) {
             toggleError(true)
             console.error(e);
@@ -35,6 +38,10 @@ function App() {
             toggleLoading(false)
         }
     }
+    // function getCountryPop(country) {
+    //     const setCountryPop = country.data.population
+    //     return setCountryPop
+    // }
 //     DEZE DOET HET WEL   //
 
     // async function getWorld() {
@@ -96,9 +103,15 @@ function App() {
     //     }
 
     // ///////////////////////////////////////////////////////////////////
+    function getCountryPop () {
+        setCountryPop = country.data.population
+        return setCountryPop
+    }
+
 
     const getCountry = () => {
         getWorld();
+        getCountryPop();
         // getCountryName();
         // getCountryFlag();
         // getCountryRegion();
@@ -116,14 +129,14 @@ function App() {
                 {/*Door het in een functie te plaatsen met && laat ze de list zien als het een truthy is als idg een naam van een land bekent is. Door het met een truthy falsy te doen met een ? en : wissel je tussen het article en de button*/}
                 { countryPop ?
                 <ul>
-                    {country.map(() => {
+                    {country.map((dataCountries) => {
                         return <li>
                             <article>
                                 {/*<span>*/}
                                 {/*    <img className="flag" src={countryFlag} alt="flag of {countryName}"/>*/}
                                 {/*</span>*/}
                                 {/*<span className={countryRegion}>  {countryName}</span>*/}
-                                <p>Has a population of {countryPop} people</p>
+                                <p>Has a population of {countryPop(dataCountries)} people</p>
                             </article>
                         </li>
                     })}
