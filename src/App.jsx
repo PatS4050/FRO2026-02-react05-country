@@ -29,7 +29,7 @@ function App() {
             // setCountryName(country.name.official);
             // setCountryRegion(country.region);
             // console.log(responseWorld.data);
-            console.log(setCountry)
+            console.log(responseWorld.data)
         } catch (e) {
             toggleError(true)
             console.error(e);
@@ -126,16 +126,17 @@ function App() {
                 <ul>
                     {/*{const outcome = country.map((countrySingle) => {*/}
                     {country.map((countrySingle) => {
-                        return <li>
+                        return (
+                            <li key={countrySingle.name.common}>
                             <article>
-                                {/*<span>*/}
-                                {/*    <img className="flag" src={countryFlag} alt="flag of {countryName}"/>*/}
-                                {/*</span>*/}
-                                {/*<span className={countryRegion}>  {countryName}</span>*/}
-                                {/*<p>Has a population of {countryPop(countrySingle)} people</p>*/}
-                                <p>Has a population of {getCountryPop(countrySingle)} people</p>
+                                <span>
+                                    <img className="flag" src={countrySingle.flags.svg} alt={`flag of ${countrySingle.name.common}`}/>
+                                </span>
+                                <span className={countrySingle.region}>  {countrySingle.name.official}</span>
+                                <p>Has a population of {countrySingle.population} people</p>
                             </article>
                         </li>
+                        )
                     })}
                     </ul> : <button onClick={getCountry} disabled={loading}>breng de landen</button>
                 }
