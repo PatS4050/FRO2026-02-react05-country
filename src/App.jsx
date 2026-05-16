@@ -24,7 +24,7 @@ function App() {
             const responseWorld = await axios.get(worldLink);
             setCountry(responseWorld.data);
             // const setCountryPop = country.data;
-            setCountryPop(country.population);
+            // setCountryPop(country.population);
             // setCountryFlag(country.flags.png);
             // setCountryName(country.name.official);
             // setCountryRegion(country.region);
@@ -37,10 +37,10 @@ function App() {
             toggleLoading(false)
         }
     }
-    // function getCountryPop(country) {
-    //     const setCountryPop = country.data.population
-    //     return setCountryPop
-    // }
+    function getCountryPop() {
+        const setCountryPop = country.population
+        return setCountryPop
+    }
 //     DEZE DOET HET WEL   //
 
     // async function getWorld() {
@@ -102,10 +102,6 @@ function App() {
     //     }
 
     // ///////////////////////////////////////////////////////////////////
-    // function getCountryPop () {
-    //     setCountryPop = country.data.population
-    //     return setCountryPop
-    // }
 
 
     const getCountry = () => {
@@ -128,14 +124,16 @@ function App() {
                 {/*Door het in een functie te plaatsen met && laat ze de list zien als het een truthy is als idg een naam van een land bekent is. Door het met een truthy falsy te doen met een ? en : wissel je tussen het article en de button*/}
                 { country ?
                 <ul>
-                    {country.map((dataCountries) => {
+                    {/*{const outcome = country.map((countrySingle) => {*/}
+                    {country.map((countrySingle) => {
                         return <li>
                             <article>
                                 {/*<span>*/}
                                 {/*    <img className="flag" src={countryFlag} alt="flag of {countryName}"/>*/}
                                 {/*</span>*/}
                                 {/*<span className={countryRegion}>  {countryName}</span>*/}
-                                <p>Has a population of {countryPop} people</p>
+                                {/*<p>Has a population of {countryPop(countrySingle)} people</p>*/}
+                                <p>Has a population of {getCountryPop(countrySingle)} people</p>
                             </article>
                         </li>
                     })}

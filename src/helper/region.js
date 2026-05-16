@@ -10,7 +10,7 @@ import axios from "axios";
 async function region(tomato) {
     try {
         const responseCountryRegion = await axios.get(tomato);
-        setCountryRegion(responseCountryRegion.data[101].region);
+        setCountryRegion(responseCountryRegion.data[0].region);
     } catch (e) {
         console.error(e);
     }
