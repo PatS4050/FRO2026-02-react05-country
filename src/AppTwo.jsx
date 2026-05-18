@@ -1,7 +1,7 @@
 import './AppTwo.css';
 import React, {useState} from "react";
 import axios from "axios";
-const worldLink = 'https://restcountries.com/v3.1/all?fields=name';
+const worldSearch = 'https://restcountries.com/v3.1/all?fields=name';
 
 // import worldTurn from "./assets/world_map.png"
 //
@@ -9,28 +9,27 @@ const worldLink = 'https://restcountries.com/v3.1/all?fields=name';
 // const [error, toggleError] = useState(false)
 // const [loading, toggleLoading] = useState(false)
 
-
-
+const [searchCountries, setSearchCountries] = useState ("");
+const [error, toggleError] = useState (false);
+const [loading, toggleLoading] = useState (false)
 
 function AppTwo() {
 
-    // async function takeWorld() {
-    //     toggleError(false)
-    //     toggleLoading(true)
-    //     try {
-    //         const responseCountry = await axios.get(countryData);
-    //         setCountry(responseWorld.data);
-    //         console.log(responseCountry.data)
-    //     } catch (e) {
-    //         toggleError(true)
-    //         console.error(e);
-    //     } finally {
-    //         toggleLoading(false)
-    //     }
-    // }
-    // const getNederland =() => {
-    //     takeWorld();
-    // }
+    async function takeWorld() {
+        toggleError(false)
+        toggleLoading(true)
+        try {
+            const responseSearch = await axios.get(worldSearch.data.name);
+            setSearchCountries(responseSearch);
+            console.log(responseSearch);
+        } catch (e) {
+            toggleError(true)
+            console.error(e);
+        } finally {
+            toggleLoading(false)
+        }
+    }
+
 
     return (
         <>
@@ -38,8 +37,8 @@ function AppTwo() {
                 <h1> Search country information </h1>
             </header>
             <main>
-                {/*<button onClick={getNederland} disabled={loading}>breng nederland</button>*/}
-                {/*<p>{country}</p>*/}
+                <button onClick={takeWorld} disabled={loading}>zoek een land</button>
+                <p>{country}</p>
             </main>
             <footer>
 

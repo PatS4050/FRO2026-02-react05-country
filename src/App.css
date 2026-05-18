@@ -114,3 +114,14 @@ article{
 .flag {
     width:36px
 }
+
+/*//-----------search section-----------//*/
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.globe {
+    width:50vw;
+}
+
